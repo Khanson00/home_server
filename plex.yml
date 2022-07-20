@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  plex:
+    image: plexinc/pms-docker:public
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1026
+      - PGID=1000
+      - VERSION=latest
+      - TZ=US/Eastern
+    volumes:
+    - /volume1/docker/plex:/config
+    - /volume1/Media:/media
+    devices:
+      - /dev/dri:/dev/dri # for harware transcoding
+    restart: unless-stopped
